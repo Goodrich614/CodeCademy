@@ -22,58 +22,82 @@ const getComputerChoice = () => {
     }
 }
 
+let yourScore = 0;
+let computerScore = 0;
+
 const determineWinner = (userChoice, computerChoice) => {
     let message;
+    
+
     if (userChoice === computerChoice) {
-        message = 'Tie!'
+        message = 'Tie! \nYou both through ' + userChoice;
         return message;
     }
 
     if (userChoice === 'rock') {
         if (computerChoice === 'paper') {
-            message = 'You lost! :('
+            message = 'The paper wins the rock: You lose! :('
+            computerScore++;
+            console.log(computerScore);
         }
         else {
-            message = 'You win! :)'
+            message = 'Rock is the better on scissors: You win! :)'
+            yourScore++;
+            console.log(yourScore);
         }
         return message;
     }
-
+    
     if (userChoice === 'scissors') {
         if (computerChoice === 'rock') {
-            message = 'You lost! :('
+            message = 'Rocks beats those scissor: You lose! :('
+            computerScore++;
+            console.log(computerScore);
         }
         else {
-            message = 'You win! :)'
+            message = 'Scissor won at the papers: You win! :)'
+            yourScore++;
+            console.log(yourScore);
         }
         return message;
     }
 
     if (userChoice === 'paper') {
         if (computerChoice === 'scissors') {
-            message = 'You lost! :('
+            message = 'Scissors beat the paper: You lose! :('
+            computerScore++;
+            console.log(computerScore);
         }
         else {
-            message = 'You win! :)'
+            message = 'Papers beat those rocks: You win! :)'
+            yourScore++;
+            console.log(yourScore);
         }
-        return message;
+        return message
+        
     }
+}
+
+const playGame = () => {
+
+    let gameNum;
+
+    const userChoice = getUserChoice('rock');
+    const computerChoice = getComputerChoice();
+    gameCount();
+
+    console.log('========== Game: ' + gameNum + ' ==========')
+    console.log('========== Your score: ' + yourScore + ' ==========')
+    console.log('========== Computer score: ' + computerScore + ' ==========')
+    console.log('You through: ' + userChoice);
+    console.log('The computer through: ' + computerChoice);
+    console.log(determineWinner(userChoice, computerChoice));
 
 }
 
-let gameNum = 1;
-
-const playGame = () => {
-    const userChoice = getUserChoice('rock');
-    const computerChoice = getComputerChoice('rock');
-
-    gameNum = gameNum + 1;
-
-    console.log('Game: ' + gameNum)
-    console.log('You threw: ' + userChoice);
-    console.log('The computer threw: ' + computerChoice);
-    console.log(determineWinner(userChoice, computerChoice));
-
+const gameCount = (gameNum) => {
+    gameNum+=1;
+    return gameNum;
 }
 
 playGame();
